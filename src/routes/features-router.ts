@@ -1,11 +1,9 @@
-import { container } from "@/../container";
+import { container } from "@root/container";
 
 import express from "express";
 import { FeaturesService } from "@services/features-service"
 import ControllerBase from "@services/controller-base";
-import FeatureModel from "@/models/ground/feature";
-import { MultiPolygon, Polygon } from "geojson";
-import FeatureEntity from "@/entities/requests/feature-request";
+import FeatureEntity from "@entities/requests/feature-request";
 
 const route = express.Router();
 

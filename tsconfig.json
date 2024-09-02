@@ -10,7 +10,7 @@
         "outDir": "dist",
         "experimentalDecorators": true, // PERMITE OS 'DECORATORS' NO CONSTRUTOR
         "paths": {
-          "@/*": ["./*"],
+          "@root/*": ["./../*"],
           "@controllers/*": ["./controllers/*"],
           "@services/*": ["./services/*"],
           "@repositories/*": ["./repositories/*"],

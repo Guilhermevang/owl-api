@@ -4,4 +4,7 @@ export const Locator = {
 
     IFeaturesService: Symbol.for('IFeaturesService'),
     IFeaturesRepository: Symbol.for('IFeaturesRepository'),
+
+    ICropsService: Symbol.for('ICropsService'),
+    ICropsRepository: Symbol.for('ICropsRepository'),
 }

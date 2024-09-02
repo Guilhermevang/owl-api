@@ -1,5 +1,5 @@
-import FeatureEntity from "@/entities/requests/feature-request";
-import FeatureModel from "@/models/ground/feature";
+import FeatureEntity from "@entities/requests/feature-request";
+import FeatureModel from "@models/ground/feature";
 import { Geometry, MultiPolygon, Polygon } from "geojson";
 
 export default class FeatureMapper {

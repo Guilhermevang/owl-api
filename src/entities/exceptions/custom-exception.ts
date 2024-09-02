@@ -29,11 +29,11 @@ class CustomException {
             case "INVALID_DATA":
                 this.error_description = "Os dados fornecidos no corpo da requisição são inválidos.";
                 break;
-            case "FEATURES_NOT_FOUND":
-                this.error_description = "Nenhum talhão encontrado.";
+            case "ITEMS_NOT_FOUND":
+                this.error_description = "Nenhum item encontrado.";
                 break;
-            case "FEATURE_NOT_FOUND":
-                this.error_description = "Talhão não encontrado.";
+            case "ITEM_NOT_FOUND":
+                this.error_description = "Não encontrado.";
                 break;
             default:
                 this.error_description = "Houve um erro não tratado.";
@@ -49,11 +49,11 @@ class CustomException {
             case "INVALID_DATA":
                 this.status_code = 400;
                 break;
-            case "FEATURES_NOT_FOUND":
-                this.status_code = 400;
+            case "ITEMS_NOT_FOUND":
+                this.status_code = 404;
                 break;
-            case "FEATURE_NOT_FOUND":
-                this.status_code = 400;
+            case "ITEM_NOT_FOUND":
+                this.status_code = 404;
                 break;
             default:
                 this.status_code = 500;

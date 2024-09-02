@@ -2,7 +2,9 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
-import featuresRouter from '@/routes/features-route';
+
+import featuresRouter from '@routes/features-router';
+import cropsRouter from '@routes/crops-router';
 
 dotenv.config()
 const app = express();
@@ -26,6 +28,7 @@ const API_ROUTES = {
 
 // Rotas
 app.use(`${API_ROUTES.v1}/features`, featuresRouter);
+app.use(`${API_ROUTES.v1}/crops`, cropsRouter);
 
 app.use("/images", express.static("./public/images"));
 

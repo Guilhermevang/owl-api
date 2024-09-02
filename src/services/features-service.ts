@@ -1,14 +1,16 @@
 import { inject, injectable } from "inversify";
-import { Locator } from "@/../locator";
+import { Locator } from "@root/locator";
 
 import { IFeaturesRepository } from "@repositories/features-repository";
 import CustomException from "@entities/exceptions/custom-exception";
 import FeatureModel from "@models/ground/feature";
 import { Geometry, MultiPolygon, Polygon, Position } from "geojson";
-import Utils from "@/utils/utils";
+import Utils from "@utils/utils";
 import { createHash } from "crypto";
-import FeatureEntity from "@/entities/requests/feature-request";
-import FeatureMapper from "@/mappers/feature.mapper";
+import FeatureEntity from "@entities/requests/feature-request";
+import FeatureMapper from "@mappers/feature.mapper";
+import CropModel from "@models/crops/crop";
+import { ICropsRepository } from "@repositories/crops-repository";
 
 export interface IFeaturesService {
     insertNewFeature(feature: FeatureEntity): Promise<any>;
@@ -24,6 +26,7 @@ export class FeaturesService implements IFeaturesService {
     
     constructor(
         @inject(Locator.IFeaturesRepository) private featuresRepository: IFeaturesRepository,
+        @inject(Locator.ICropsRepository) private cropsRepository: ICropsRepository,
     ) {
         this._PORT = process.env.PORT || String(8800);
         this._utils = new Utils();
@@ -66,13 +69,23 @@ export class FeaturesService implements IFeaturesService {
             );
         }
 
+        // Busca o tipo de cultivo
+        const crop: CropModel = await this.cropsRepository.fetchCrop(feature.properties.feature.crop.id);
+
+        if (!crop) {
+            throw new CustomException(
+                "ITEM_NOT_FOUND",
+                "Não foi possível localizar o tipo de cultivo. Tenha certeza que o cultivo existe."
+            );
+        }
+        
         // Faz o mapeamento da entidade para o modelo de banco de dados
         const feature_model: typeof existent_feature = FeatureMapper.toModel(feature);
 
         // Insere informações que só o back-end tem acesso
-        feature_model.properties.user.id = "";
+        feature_model.properties.user.id = "50b87973-2957-427b-8476-38d67e39e867";
         feature_model.properties.feature.hash = feature_hash;
-        feature_model.properties.feature.crop.name = "";
+        feature_model.properties.feature.crop.name = crop.name;
         
         // Insere o talhão e retorna o ID (ObjectId)
         const feature_id = await this.featuresRepository.insertFeature(feature_model);
@@ -118,7 +131,7 @@ export class FeaturesService implements IFeaturesService {
 
         // Se não encontrar o talhão, devolver erro
         if (!feature_model) {
-            throw new CustomException("FEATURE_NOT_FOUND");
+            throw new CustomException("ITEM_NOT_FOUND");
         }
 
         // Mapeia o modelo para uma entidade que pode ser respondida sem informações sensiveis e retorna
@@ -140,7 +153,7 @@ export class FeaturesService implements IFeaturesService {
 
         // Se não encontrar o talhão, devolver erro
         if (!feature_model) {
-            throw new CustomException("FEATURE_NOT_FOUND");
+            throw new CustomException("ITEM_NOT_FOUND");
         }
 
         // Mapeia o modelo para uma entidade que pode ser respondida sem informações sensiveis e retorna
@@ -166,7 +179,7 @@ export class FeaturesService implements IFeaturesService {
 
         // Se não encontrar um sequer talhão, devolver erro
         if (!features) {
-            throw new CustomException("FEATURES_NOT_FOUND");
+            throw new CustomException("ITEMS_NOT_FOUND");
         }
 
         // Faz a conversão/mapeamento de todos os modelos para entidades

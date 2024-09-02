@@ -1,4 +1,4 @@
-import DatabaseException from "@/entities/exceptions/database-exception";
+import DatabaseException from "@entities/exceptions/database-exception";
 import DatabaseContext from "@config/db";
 import CustomException from "@entities/exceptions/custom-exception";
 import FeatureModel from "@models/ground/feature";
@@ -17,7 +17,7 @@ export interface IFeaturesRepository {
 @injectable()
 export class FeaturesRepository implements IFeaturesRepository {
     database: DatabaseContext;
-    collection_name: string;
+    private collection_name: string;
     
     constructor () {
         this.database = new DatabaseContext("iss-db");
@@ -43,7 +43,7 @@ export class FeaturesRepository implements IFeaturesRepository {
             );
         }
 
-        const inserted_id: string = result.insertedId.toString("hex");
+        const inserted_id: string = result.insertedId.toHexString();
 
         return inserted_id;
     }
@@ -94,7 +94,7 @@ export class FeaturesRepository implements IFeaturesRepository {
                     "properties.feature.crop.id": {
                         $in: crops_id
                     }
-                }).toArray()  as FeatureModel<Geometry>[];
+                }).toArray() as FeatureModel<Geometry>[];
 
         if (!features || features.length === 0) {
             return null;
