@@ -12,7 +12,8 @@ import CropResponse from "@entities/responses/crop-response";
 
 export interface ICropsService {
     insertNewCrop(crop: CropRequest): Promise<any>;
-    fetchSingleCrop(crop_id: string): Promise<CropResponse>
+    fetchSingleCrop(crop_id: string): Promise<CropResponse>;
+    listCrops(): Promise<CropResponse[]>;
 }
 
 @injectable()
