@@ -1,4 +1,4 @@
-import DatabaseOperationException from "./../../entities/enums/db-operation-exception";
+import DatabaseOperationException from "@entities/enums/db-operation-exception";
 
 class DatabaseException {
     constructor(

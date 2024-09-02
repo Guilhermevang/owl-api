@@ -1,4 +1,4 @@
-import CustomException from './../entities/exceptions/custom-exception';
+import CustomException from '@entities/exceptions/custom-exception';
 import { writeFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 
@@ -23,6 +23,27 @@ class Utils {
 
     discardTempFile(temp_file_path: string): void {
         unlinkSync(temp_file_path);
+    }
+
+    isValidHash(hash: string): boolean {
+        // Se estiver vazio
+        if (hash.trim().length === 0) return false;
+
+        // Se o formato não bater
+        const regex: RegExp = /^[a-fA-F0-9]{64}$/;
+        if (!regex.test(hash)) return false;
+
+        // Tudo certo
+        return true;
+    }
+
+    isValidUUIDv4(uuid: string): boolean {
+        // Se o formato não bater
+        const regex: RegExp = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
+        if (!regex.test(uuid)) return false;
+
+        // Tudo certo
+        return true;
     }
 }
 

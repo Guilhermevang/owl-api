@@ -29,20 +29,11 @@ class CustomException {
             case "INVALID_DATA":
                 this.error_description = "Os dados fornecidos no corpo da requisição são inválidos.";
                 break;
-            case "DOUBLE_REPORT":
-                this.error_description = "Já existe uma leitura para este tipo no mês atual.";
+            case "FEATURES_NOT_FOUND":
+                this.error_description = "Nenhum talhão encontrado.";
                 break;
-            case "INVALID_TYPE":
-                this.error_description = "Tipo de medição não permitida";
-                break;
-            case "MEASURES_NOT_FOUND":
-                this.error_description = "Nenhuma leitura encontrada";
-                break;
-            case "MEASURE_NOT_FOUND":
-                this.error_description = "Leitura não encontrada";
-                break;
-            case "CONFIRMATION_DUPLICATE":
-                this.error_description = "Leitura do mês já realizada";
+            case "FEATURE_NOT_FOUND":
+                this.error_description = "Talhão não encontrado.";
                 break;
             default:
                 this.error_description = "Houve um erro não tratado.";
@@ -58,20 +49,11 @@ class CustomException {
             case "INVALID_DATA":
                 this.status_code = 400;
                 break;
-            case "DOUBLE_REPORT":
-                this.status_code = 409;
-                break;
-            case "INVALID_TYPE":
+            case "FEATURES_NOT_FOUND":
                 this.status_code = 400;
                 break;
-            case "MEASURES_NOT_FOUND":
+            case "FEATURE_NOT_FOUND":
                 this.status_code = 400;
-                break;
-            case "MEASURE_NOT_FOUND":
-                this.status_code = 400;
-                break;
-            case "CONFIRMATION_DUPLICATE":
-                this.status_code = 409;
                 break;
             default:
                 this.status_code = 500;

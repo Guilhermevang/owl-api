@@ -1,10 +1,7 @@
 type ErrorCode =
     "INTERNAL" |
     "INVALID_DATA" |
-    "DOUBLE_REPORT" |
-    "INVALID_TYPE" |
-    "MEASURES_NOT_FOUND" |
-    "MEASURE_NOT_FOUND" |
-    "CONFIRMATION_DUPLICATE"
+    "FEATURES_NOT_FOUND" |
+    "FEATURE_NOT_FOUND";
 
 export default ErrorCode;

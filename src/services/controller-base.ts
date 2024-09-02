@@ -1,4 +1,4 @@
-import CustomException from "./../entities/exceptions/custom-exception";
+import CustomException from "@entities/exceptions/custom-exception";
 import express from "express";
 
 interface AutoResponseFunction {

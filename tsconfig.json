@@ -9,6 +9,19 @@
         "esModuleInterop": true,
         "outDir": "dist",
         "experimentalDecorators": true, // PERMITE OS 'DECORATORS' NO CONSTRUTOR
+        "paths": {
+          "@/*": ["./*"],
+          "@controllers/*": ["./controllers/*"],
+          "@services/*": ["./services/*"],
+          "@repositories/*": ["./repositories/*"],
+          "@entities/*": ["./entities/*"],
+          "@models/*": ["./models/*"],
+          "@utils/*": ["./utils/*"],
+          "@routes/*": ["./routes/*"],
+          "@config/*": ["./config/*"],
+          "@exceptions/*": ["./entities/exceptions/*"],
+          "@mappers/*": ["./mappers/*"],
+        }
     },
     "include": ["src/**/*"],
     "exclude": [

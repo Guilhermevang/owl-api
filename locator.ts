@@ -1,5 +1,7 @@
 export const Locator = {
-    IMeasuresRepository: Symbol.for('IMeasuresRepository'),
-    IMeasuresService: Symbol.for('IMeasuresService'),
-    IGeminiService: Symbol.for('IGeminiService'),
+    // I_Service: Symbol.for('I_Service'),
+    // I_Repository: Symbol.for('I_Repository'),
+
+    IFeaturesService: Symbol.for('IFeaturesService'),
+    IFeaturesRepository: Symbol.for('IFeaturesRepository'),
 }
