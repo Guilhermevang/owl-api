@@ -26,6 +26,7 @@ class CustomException {
         switch (this.error_code) {
             case "INTERNAL":
                 this.error_description = "Houve um erro interno."
+                break;
             case "INVALID_DATA":
                 this.error_description = "Os dados fornecidos no corpo da requisição são inválidos.";
                 break;
@@ -35,13 +36,16 @@ class CustomException {
             case "ITEM_NOT_FOUND":
                 this.error_description = "Não encontrado.";
                 break;
+            case "UNAUTHORIZED":
+                this.error_description = "Não autorizado. Token inválido ou expirado.";
+                break;
             default:
                 this.error_description = "Houve um erro não tratado.";
                 break;
         }
     }
 
-    setStatusCode():void {
+    setStatusCode(): void {
         switch (this.error_code) {
             case "INTERNAL":
                 this.status_code = 500;
@@ -54,6 +58,9 @@ class CustomException {
                 break;
             case "ITEM_NOT_FOUND":
                 this.status_code = 404;
+                break;
+            case "UNAUTHORIZED":
+                this.status_code = 401;
                 break;
             default:
                 this.status_code = 500;

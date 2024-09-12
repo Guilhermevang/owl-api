@@ -33,8 +33,10 @@
     "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "firebase-admin": "^12.4.0",
     "helmet": "^7.1.0",
     "inversify": "^6.0.2",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
     "reflect-metadata": "^0.2.2",
     "uuid": "^10.0.0"
@@ -44,6 +46,7 @@
     "@types/express": "^4.17.21",
     "@types/geojson": "^7946.0.14",
     "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/mongodb": "^4.0.7",
     "@types/supertest": "^6.0.2",
     "@types/uuid": "^10.0.0",

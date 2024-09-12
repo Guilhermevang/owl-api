@@ -1,8 +1,7 @@
 import { BBox, Feature, MultiPolygon, Polygon } from "geojson";
-import FeaturePropertiesModel from "@entities/requests/feature-properties-request";
-import FeaturePropertiesEntity from "./feature-properties-request";
+import FeaturePropertiesEntity from "@entities/requests/feature-properties-request";
 
-export default class FeatureEntity implements Feature<Polygon | MultiPolygon, FeaturePropertiesModel> {
+export default class FeatureEntity implements Feature<Polygon | MultiPolygon, FeaturePropertiesEntity> {
     id?: string | number; // ID da Feature
     type: "Feature"; // Tipo da Feature (Feature | FeatureCollection)
     geometry: Polygon | MultiPolygon; // Possívelmente 'Polygon' ou 'MultiPolygon'

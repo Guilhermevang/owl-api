@@ -87,14 +87,19 @@ export class FeaturesRepository implements IFeaturesRepository {
     async listFeaturesFromUser(user_uuid: string, crops_id: (ObjectId | string)[]): Promise<FeatureModel<Geometry>[] | null> {
         const db: Db = await this.database.connect();
 
+        const filter = {
+            "properties.user.id": user_uuid
+        } as any;
+
+        if (crops_id.length > 0) {
+            filter["properties.feature.crop.id"] = {
+                $in: crops_id
+            }
+        }
+        
         const features: FeatureModel<Geometry>[] =
             await db.collection(this.collection_name)
-                .find({
-                    "properties.user.id": user_uuid,
-                    "properties.feature.crop.id": {
-                        $in: crops_id
-                    }
-                }).toArray() as FeatureModel<Geometry>[];
+                .find(filter).toArray() as FeatureModel<Geometry>[];
 
         if (!features || features.length === 0) {
             return null;

@@ -163,7 +163,7 @@ export class FeaturesService implements IFeaturesService {
 
     async listFeaturesFromUser(user_uuid: string, crops_filter: string): Promise<FeatureEntity[]> {
         // Se o uuid do usuário vier errado, devolver erro
-        if (!this._utils.isValidUUIDv4(user_uuid))
+        if (!user_uuid.trim())
         {
             throw new CustomException(
                 "INVALID_DATA",
@@ -172,7 +172,7 @@ export class FeaturesService implements IFeaturesService {
         }
         
         // Escaneia o filtro de cultivo (divido por uma barra vertical "<string>|<string>")
-        const crops_id: string[] = crops_filter.trim().split("|");
+        const crops_id: string[] = crops_filter ? crops_filter?.trim().split("|") : [];
         
         // Busca os modelos
         const features = await this.featuresRepository.listFeaturesFromUser(user_uuid, crops_id);
